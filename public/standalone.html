@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="bg-[#131B4D] text-[#131B4D] selection:bg-[#D32F2F] selection:text-white">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Star Education | Corporate Training Institute Dammam</title>
+  <meta name="description"
+    content="Award-winning fluid animated landing page for Star Education, Dammam. Featuring GSAP ScrollTrigger pinning, Lenis inertial scroll, dynamic horizontal track, and instant QR verification." />
+
+  <!-- Fonts: Plus Jakarta Sans, Syne, JetBrains Mono, and Cairo for Arabic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            body: ['Plus Jakarta Sans', 'sans-serif'],
+            arabic: ['Cairo', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          },
+          colors: {
+            brandNavy: '#131B4D',
+            brandNavyDark: '#0E143A',
+            brandNavyCard: '#1C2666',
+            actionRed: '#D32F2F',
+            actionRedHover: '#B71C1C',
+            lightBg: '#F8F9FA'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- GSAP, ScrollTrigger, Lenis & Confetti CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
+
+  <style>
+    /* Complete Lenis Smooth Scroll Configuration */
+    html.lenis,
+    html.lenis body {
+      height: auto;
+    }
+
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+
+    .lenis.lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain;
+    }
+
+    .lenis.lenis-stopped {
+      overflow: hidden;
+    }
+
+    .lenis.lenis-scrolling iframe {
+      pointer-events: none;
+    }
+
+    /* Ambient background grid */
+    .bg-grid-pattern {
+      background-size: 40px 40px;
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    }
+
+    .bg-radial-glow {
+      background: radial-gradient(circle at 50% 50%, rgba(211, 47, 47, 0.22) 0%, rgba(211, 47, 47, 0.05) 45%, transparent 70%);
+    }
+
+    /* 3D Perspective container */
+    .perspective-1000 {
+      perspective: 1200px;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0E143A;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #253375;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #D32F2F;
+    }
+
+    /* Zenox-Style Shimmer & Magnetic Glow */
+    @keyframes border-shimmer {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .shimmer-pill-wrapper {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5px;
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+
+    .shimmer-pill-wrapper::before {
+      content: '';
+      position: absolute;
+      width: 250%;
+      height: 250%;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        transparent 140deg,
+        rgba(211, 47, 47, 0.9) 180deg,
+        rgba(255, 120, 120, 1) 200deg,
+        rgba(211, 47, 47, 0.9) 220deg,
+        transparent 260deg,
+        transparent 360deg
+      );
+      animation: border-shimmer 4s linear infinite;
+    }
+
+    .shimmer-pill-inner {
+      position: relative;
+      z-index: 1;
+      border-radius: 9999px;
+      background: #131B4D;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Liquid Motion Fluid Ribbon (Water Splash Dynamic Expansion & Contraction) */
+    @keyframes liquid-fluid-flow {
+      0% {
+        transform: translate3d(-2%, -2%, 0) scale(1, 1) rotate(0deg);
+        filter: drop-shadow(0 0 35px rgba(211, 47, 47, 0.45));
+      }
+      25% {
+        transform: translate3d(1%, 2%, 0) scale(1.08, 0.94) rotate(1deg);
+        filter: drop-shadow(0 0 50px rgba(255, 23, 68, 0.65));
+      }
+      50% {
+        transform: translate3d(3%, -1%, 0) scale(0.96, 1.12) rotate(-0.5deg);
+        filter: drop-shadow(0 0 40px rgba(233, 30, 99, 0.55));
+      }
+      75% {
+        transform: translate3d(-1%, 3%, 0) scale(1.05, 0.96) rotate(1.5deg);
+        filter: drop-shadow(0 0 55px rgba(255, 82, 82, 0.6));
+      }
+      100% {
+        transform: translate3d(-2%, -2%, 0) scale(1, 1) rotate(0deg);
+        filter: drop-shadow(0 0 35px rgba(211, 47, 47, 0.45));
+      }
+    }
+
+    @keyframes liquid-splash-morph {
+      0%, 100% {
+        transform: scale(1) translate3d(0, 0, 0);
+        opacity: 0.92;
+      }
+      35% {
+        transform: scale(1.06, 1.14) translate3d(15px, -10px, 0);
+        opacity: 1;
+      }
+      70% {
+        transform: scale(0.95, 0.92) translate3d(-12px, 15px, 0);
+        opacity: 0.88;
+      }
+    }
+
+    @keyframes glow-pulse {
+      0%, 100% {
+        opacity: 0.45;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.8;
+        transform: scale(1.1);
+      }
+    }
+
+    .zenox-liquid-ribbon {
+      animation: liquid-fluid-flow 11s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+      will-change: transform, filter;
+      transform-origin: 40% 45%;
+    }
+
+    .zenox-liquid-glass {
+      animation: liquid-splash-morph 8s ease-in-out infinite;
+      will-change: transform, opacity;
+      transform-origin: 45% 50%;
+    }
+
+    .zenox-glow-pulse {
+      animation: glow-pulse 7s ease-in-out infinite;
+    }
+
+    @keyframes fluid-3d-drift {
+      0%, 100% {
+        transform: scale(1) translate3d(0, 0, 0);
+        opacity: 0.85;
+      }
+      50% {
+        transform: scale(1.04) translate3d(-10px, 8px, 0);
+        opacity: 0.95;
+      }
+    }
+
+    .fluid-3d-drift {
+      animation: fluid-3d-drift 14s ease-in-out infinite alternate;
+      will-change: transform, opacity;
+    }
+  </style>
+</head>
+
+<body class="font-body bg-[#131B4D] text-[#E2E8F0] antialiased overflow-x-hidden selection:bg-[#D32F2F] selection:text-white">
+
+  <!-- ==========================================================================
+       HEADER (Fixed Frosted Glass Navbar with Responsive Navigation & Actions)
+       ========================================================================== -->
+  <header id="main-header"
+    class="fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 py-3.5">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-8 w-full">
+      <!-- Left Side: Brand Logo Lockup -->
+      <a href="#hero"
+        class="nav-logo-lockup group flex items-center gap-3 text-start hover:scale-105 hover:opacity-95 transition-all duration-300 cursor-pointer select-none">
+        <img src="/STAREDUCATIONLOG.png" alt="Star Education Logo"
+          class="h-9 sm:h-10 w-auto object-contain drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] transition-transform duration-300 group-hover:scale-105"
+          loading="eager" />
+        <div class="flex flex-col text-start">
+          <span data-en="STAR EDUCATION" data-ar="ستار للتعليم"
+            class="font-display font-black tracking-widest uppercase text-white text-sm sm:text-base transition-colors group-hover:text-white/90 leading-tight">
+            STAR EDUCATION
+          </span>
+          <span data-en="DAMMAM • NELC ACCREDITED" data-ar="الدمام • اعتماد المركز الوطني NELC"
+            class="text-[8px] sm:text-[9px] font-mono uppercase tracking-widest text-[#D32F2F] font-bold leading-tight mt-0.5">
+            DAMMAM • NELC ACCREDITED
+          </span>
+        </div>
+      </a>
+
+      <!-- Center: Navigation Menu Links -->
+      <nav class="hidden md:flex gap-5 lg:gap-7 items-center text-white/80 font-medium text-xs sm:text-sm">
+        <a href="#nelc" data-en="The Standard" data-ar="المعيار"
+          class="hover:text-white hover:text-[#D32F2F] transition-colors py-1">The Standard</a>
+        <a href="#courses" data-en="Curriculum" data-ar="المناهج"
+          class="hover:text-white hover:text-[#D32F2F] transition-colors py-1">Curriculum</a>
+        <a href="#certificate" data-en="QR Verification" data-ar="التحقق عبر QR"
+          class="hover:text-white hover:text-[#D32F2F] transition-colors py-1">QR Verification</a>
+        <a href="#portal-cta" data-en="LMS Portal" data-ar="بوابة التعلم"
+          class="hover:text-white hover:text-[#D32F2F] transition-colors py-1">LMS Portal</a>
+      </nav>
+
+      <!-- Right Side: Actions (Audio Toggle, Language Toggle & Primary CTA) -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Sound FX Toggle -->
+        <button id="sound-toggle-btn" type="button" title="Toggle Sound Feedback"
+          aria-label="Toggle Sound Effects"
+          class="p-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/15 text-white/80 hover:text-white transition-all cursor-pointer">
+          <svg id="sound-icon-on" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+          </svg>
+          <svg id="sound-icon-off" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+          </svg>
+        </button>
+
+        <!-- Bilingual EN / AR Language Switcher -->
+        <button id="lang-toggle-btn" type="button" title="Toggle English / Arabic"
+          aria-label="Toggle English and Arabic language"
+          class="flex items-center p-1 rounded-lg bg-white/10 border border-white/15 hover:border-[#D32F2F]/60 transition-all font-mono text-xs select-none cursor-pointer">
+          <span id="lang-en"
+            class="px-2 py-0.5 rounded-md font-bold text-[11px] bg-[#D32F2F] text-white shadow-sm">EN</span>
+          <span class="text-white/40 px-0.5 text-[10px]">/</span>
+          <span id="lang-ar" class="px-2 py-0.5 rounded-md font-bold text-[11px] text-gray-300 hover:text-white">ع</span>
+        </button>
+
+        <!-- Primary Action Red CTA (Opens LMS Portal Modal) -->
+        <button id="open-portal-header-btn" type="button" data-en="Access LMS Portal" data-ar="الدخول إلى بوابة التدريب"
+          class="nav-cta px-3 sm:px-4 py-2 rounded-lg bg-[#D32F2F] hover:bg-[#B71C1C] text-white font-display font-bold text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-lg shadow-[#D32F2F]/30 active:scale-95 text-center cursor-pointer">
+          Access LMS Portal
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       1. HERO INTRO (Deep Navy Background, Perfectly Centered & Fluid Scrub)
+       ========================================================================== -->
+  <section id="hero"
+    class="relative w-full h-screen max-h-screen flex flex-col items-center justify-center text-center px-4 bg-[#131B4D] overflow-hidden select-none">
+    
+    <!-- Background Grid -->
+    <div class="hero-grid absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none will-change-transform"></div>
+
+    <!-- Abstract 3D Fluid Wave Ribbon (Glowing Liquid Neon Light, Royal Blue, Deep Indigo, Electric Purple & Crimson Sheen) -->
+    <div class="hero-aurora-container absolute inset-0 overflow-hidden pointer-events-none z-0">
+      <!-- 3D Fluid Wave Photorealistic Render Layer (Smooth flowing silk wave, glossy metallic sheen, pure dark backdrop) -->
+      <div class="absolute inset-0 w-full h-full">
+        <img src="/hero_fluid_wave.jpg" alt="3D Fluid Wave Ribbon"
+          class="fluid-3d-drift w-full h-full object-cover object-center select-none mix-blend-screen opacity-90 filter contrast-125" />
+      </div>
+
+      <!-- Ambient Deep Color Glows for Depth -->
+      <div class="absolute -top-32 -left-32 w-[800px] h-[600px] rounded-full bg-gradient-to-br from-blue-600/20 via-indigo-600/25 to-transparent blur-[140px] pointer-events-none"></div>
+      <div class="absolute -bottom-20 -right-20 w-[900px] h-[700px] rounded-full bg-gradient-to-tl from-purple-700/25 via-[#D32F2F]/20 to-transparent blur-[160px] pointer-events-none zenox-glow-pulse"></div>
+
+      <!-- High-Precision Luminous Edge Trails Overlay (Sharp specular highlight lines) -->
+      <svg class="zenox-liquid-ribbon absolute inset-0 w-full h-full pointer-events-none opacity-80" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="neon-stream-cyan-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#448AFF" stop-opacity="0.9" />
+            <stop offset="35%" stop-color="#7C4DFF" stop-opacity="0.95" />
+            <stop offset="70%" stop-color="#E040FB" stop-opacity="0.9" />
+            <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.95" />
+          </linearGradient>
+          <linearGradient id="neon-stream-red-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FF5252" stop-opacity="0.8" />
+            <stop offset="45%" stop-color="#D32F2F" stop-opacity="0.85" />
+            <stop offset="100%" stop-color="#7C4DFF" stop-opacity="0.9" />
+          </linearGradient>
+        </defs>
+        <!-- Luminous trailing guide curve overlapping fluid stream -->
+        <path d="M-100,520 C320,680 720,740 1140,560 C1560,380 1780,240 2020,140" stroke="url(#neon-stream-cyan-purple)" stroke-width="2.5" stroke-linecap="round" opacity="0.8" />
+        <path d="M-100,535 C320,695 720,755 1140,575 C1560,395 1780,255 2020,155" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity="0.9" />
+        <path d="M-80,480 C360,620 780,680 1200,480 C1620,280 1820,160 2020,80" stroke="url(#neon-stream-red-glow)" stroke-width="1.8" stroke-linecap="round" opacity="0.6" />
+      </svg>
+    </div>
+
+    <!-- Center Content Lockup (Optimized vertical rhythm, perfectly centered) -->
+    <div class="relative z-10 max-w-4xl mx-auto flex flex-col items-center justify-center px-4 sm:px-6 w-full pt-16 sm:pt-14">
+      
+      <!-- Hero Typography (Balanced, 2-line headline) -->
+      <div class="hero-text-wrapper max-w-4xl mx-auto mb-4">
+        <h1 data-en="Future-Proof Your Career in Dammam" data-ar="ارتقِ بمسارك المهني في الدمام نحو المستقبل"
+          class="hero-title font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.1] text-white will-change-transform">
+          <span class="block text-white">Future-Proof Your Career</span>
+          <span class="block text-transparent bg-clip-text bg-gradient-to-r from-[#D32F2F] via-rose-500 to-red-400 mt-1">
+            in Dammam<span class="text-[#D32F2F]">.</span>
+          </span>
+        </h1>
+      </div>
+
+      <!-- Subtitle -->
+      <p data-en="Aramco-compliant HSE benchmarks, technical automation laboratories, and NELC accredited executive credentials."
+        data-ar="معايير الصحة والسلامة والبيئة المتوافقة مع أرامكو، ومختبرات الأتمتة الصناعية، واعتمادات المركز الوطني NELC."
+        class="hero-sub text-sm sm:text-base md:text-lg text-slate-300 max-w-2xl mb-6 font-light leading-relaxed">
+        Aramco-compliant HSE benchmarks, technical automation laboratories, and NELC accredited executive credentials.
+      </p>
+
+      <!-- Key Metric Strip -->
+      <div class="hero-metrics w-full max-w-2xl grid grid-cols-3 gap-2.5 sm:gap-4 p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md mb-6">
+        <div class="flex flex-col items-center justify-center p-2 border-r rtl:border-r-0 rtl:border-l border-white/10">
+          <div class="text-xl sm:text-2xl font-display font-extrabold text-[#D32F2F]">15,000+</div>
+          <div data-en="Graduates Certified" data-ar="خريج معتمد" class="text-[10px] font-mono text-slate-300 uppercase mt-0.5">
+            Graduates Certified
+          </div>
+        </div>
+        <div class="flex flex-col items-center justify-center p-2 border-r rtl:border-r-0 rtl:border-l border-white/10">
+          <div class="text-xl sm:text-2xl font-display font-extrabold text-white">140+</div>
+          <div data-en="Industrial Clients" data-ar="شريك صناعي" class="text-[10px] font-mono text-slate-300 uppercase mt-0.5">
+            Industrial Clients
+          </div>
+        </div>
+        <div class="flex flex-col items-center justify-center p-2">
+          <div class="text-xl sm:text-2xl font-display font-extrabold text-[#D32F2F]">98.4%</div>
+          <div data-en="Placement Velocity" data-ar="معدل التوظيف والترقية" class="text-[10px] font-mono text-slate-300 uppercase mt-0.5">
+            Placement Velocity
+          </div>
+        </div>
+      </div>
+
+      <!-- Zenox-Style Shimmer Magnetic Pill Action Button -->
+      <div class="mb-6 z-20">
+        <button id="hero-shimmer-btn" type="button" onclick="openPortalModal()"
+          class="shimmer-pill-wrapper group cursor-pointer shadow-[0_0_25px_rgba(211,47,47,0.35)] hover:shadow-[0_0_35px_rgba(211,47,47,0.65)] transition-shadow duration-300">
+          <div class="shimmer-pill-inner px-6 py-2.5">
+            <span class="w-2 h-2 rounded-full bg-[#D32F2F] animate-ping"></span>
+            <span data-en="Explore Programs & LMS Portal" data-ar="استكشف البرامج وبوابة التدريب"
+              class="font-display font-bold text-xs uppercase tracking-wider text-white group-hover:text-red-300 transition-colors">
+              Explore Programs &amp; LMS Portal
+            </span>
+            <span class="text-[#D32F2F] text-xs font-mono font-bold group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform">→</span>
+          </div>
+        </button>
+      </div>
+
+      <!-- Interactive Scroll Down Button -->
+      <button id="hero-scroll-btn" type="button"
+        class="hero-scroll-btn group flex flex-col items-center gap-1.5 text-slate-400 hover:text-white transition-all cursor-pointer focus:outline-none">
+        <span data-en="SCROLL TO DIVE" data-ar="مرر لأسفل للاستكشاف"
+          class="text-[9px] font-mono uppercase tracking-widest group-hover:tracking-[0.2em] transition-all">
+          SCROLL TO DIVE
+        </span>
+        <div class="w-6 h-9 rounded-full border border-white/20 group-hover:border-[#D32F2F] flex items-center justify-center transition-colors">
+          <svg class="w-3.5 h-3.5 text-[#D32F2F] animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </div>
+      </button>
+    </div>
+
+    <!-- Subtle bottom transition fade -->
+    <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#0E143A] to-transparent pointer-events-none"></div>
+  </section>
+
+  <!-- ==========================================================================
+       2. THE NELC STANDARD (PINNED SECTION — Deep Navy Dark Background)
+       ========================================================================== -->
+  <section id="nelc"
+    class="relative w-full min-h-screen bg-[#0E143A] text-white py-24 sm:py-32 px-6 lg:px-12 border-t border-white/10 overflow-hidden">
+    <!-- Connecting Diagonal Neon Light Trail from Hero Section (Direct continuation across fold) -->
+    <div class="absolute -top-44 -right-16 w-[800px] h-[700px] pointer-events-none opacity-60 overflow-hidden z-0">
+      <svg class="w-full h-full filter blur-[1px]" viewBox="0 0 800 700" fill="none">
+        <defs>
+          <linearGradient id="nelc-glass-sheen" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.25" />
+            <stop offset="50%" stop-color="#FFCDD2" stop-opacity="0.12" />
+            <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.2" />
+          </linearGradient>
+        </defs>
+        <!-- Volumetric glow band -->
+        <path d="M-60,-20 C260,180 520,340 820,540 L820,620 C500,400 240,240 -60,40 Z" fill="#D32F2F" filter="url(#zenox-diagonal-blur)" opacity="0.4" />
+        <!-- Frosted glass strip -->
+        <path d="M-40,-10 C270,185 530,345 810,545 L810,575 C520,375 250,215 -40,15 Z" fill="url(#nelc-glass-sheen)" opacity="0.6" />
+        <!-- Neon laser lines -->
+        <path d="M-50,0 C280,190 540,350 820,550" stroke="url(#zenox-diagonal-neon)" stroke-width="4.5" stroke-linecap="round" />
+        <path d="M-45,15 C285,205 545,365 820,565" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.85" />
+        <path d="M-55,-12 C275,178 535,338 820,538" stroke="#FF8A80" stroke-width="1.8" stroke-linecap="round" opacity="0.75" />
+      </svg>
+    </div>
+
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start relative z-10">
+
+      <!-- Sticky Sidebar -->
+      <div class="nelc-sidebar lg:col-span-5 lg:sticky lg:top-32 text-start pe-0 lg:pe-8 max-w-full">
+        <div data-en="INSTITUTIONAL ACCREDITATION" data-ar="الاعتماد المؤسسي"
+          class="text-xs font-mono text-[#D32F2F] uppercase tracking-widest mb-3 font-bold">
+          INSTITUTIONAL ACCREDITATION
+        </div>
+        <h2
+          class="font-display font-black text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tight leading-[1.08] text-white mb-6">
+          <span data-en="Certified" data-ar="تميز">Certified</span> <br />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D32F2F] via-rose-400 to-white"
+            data-en="Excellence" data-ar="معتمد">Excellence</span>
+          <span class="text-[#D32F2F]">.</span>
+        </h2>
+        <p data-en="Operating under license #SA-NELC-8492 from the National eLearning Center of Saudi Arabia. Continuous quality compliance with TVTC and international engineering bodies."
+          data-ar="نعمل بموجب ترخيص رقم #SA-NELC-8492 من المركز الوطني للتعليم الإلكتروني في المملكة العربية السعودية مع الالتزام المستمر بمعايير المؤسسة العامة للتدريب التقني والمهني."
+          class="text-sm text-slate-300 leading-relaxed mb-6 font-light">
+          Operating under license #SA-NELC-8492 from the National eLearning Center of Saudi Arabia. Continuous quality
+          compliance with TVTC and international engineering bodies.
+        </p>
+
+        <!-- Cinematic Industrial Image -->
+        <div
+          class="reveal-image mt-8 relative rounded-2xl overflow-hidden shadow-2xl border border-white/15 aspect-video group">
+          <img src="/stareducationpicture1.jpg" alt="Industrial Training Excellence"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0E143A]/80 via-transparent to-transparent"></div>
+          <div class="absolute bottom-3 left-3 text-[10px] font-mono text-white/90 bg-[#131B4D]/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/10">
+            DAMMAM LAB FACILITY #04
+          </div>
+        </div>
+
+        <div data-en="[ PINNED VIEW • SCRUB TO ADVANCE STANDARDS ]" data-ar="[ عرض مثبت • مرر لاستعراض المعايير ]"
+          class="p-3.5 rounded-xl bg-white/5 border border-white/10 text-xs font-mono text-slate-300 backdrop-blur-sm mt-6">
+          [ PINNED VIEW • SCRUB TO ADVANCE STANDARDS ]
+        </div>
+      </div>
+
+      <!-- Standard Cards (Single Card Stage Container with Stacked Cards Sliding Up) -->
+      <div class="lg:col-span-7 relative w-full">
+        <div class="nelc-cards-stage relative w-full min-h-[480px] sm:min-h-[500px] h-[520px] rounded-3xl overflow-hidden shadow-2xl">
+          <!-- Card 1: Our Mission (Base layer z-10) -->
+          <div class="nelc-card absolute inset-0 w-full h-full p-8 sm:p-10 rounded-3xl bg-[#131B4D] border border-white/15 shadow-2xl flex flex-col justify-between text-start z-10">
+            <div>
+              <div data-en="STANDARD 01" data-ar="المعيار 01"
+                class="text-xs font-mono text-[#D32F2F] uppercase mb-2 font-bold">STANDARD 01</div>
+              <h3 data-en="Our Mission" data-ar="مهمتنا"
+                class="font-display font-extrabold text-2xl sm:text-3xl mb-2 text-white">Our Mission</h3>
+              <div data-en="Bridging the Eastern Province Industrial Talent Gap"
+                data-ar="سد فجوة الكفاءات الصناعية في المنطقة الشرقية"
+                class="text-xs text-red-300 font-mono mb-4 font-semibold">Bridging the Eastern Province Industrial Talent
+                Gap</div>
+              <p data-en="Developing high-impact training engineered for Aramco, SABIC, and regional energy suppliers. Over 15,000 certified Saudi professionals deployed across industrial mega-projects."
+                data-ar="تطوير برامج تدريبية عالية الأثر موجهة لأرامكو وسابك وقطاعات الطاقة الإقليمية، مع تأهيل أكثر من 15,000 متخصص سعودي للمشاريع العملاقة."
+                class="text-sm text-slate-200 leading-relaxed mb-6 font-light">
+                Developing high-impact training engineered for Aramco, SABIC, and regional energy suppliers. Over 15,000
+                certified Saudi professionals deployed across industrial mega-projects.
+              </p>
+            </div>
+            <div
+              class="grid grid-cols-3 gap-3 p-3 bg-[#0E143A]/80 border border-white/10 rounded-xl text-center text-xs font-mono text-slate-300">
+              <div><span class="text-white font-bold block text-base">140+</span> <span data-en="Partners"
+                  data-ar="شريك">Partners</span></div>
+              <div><span class="text-white font-bold block text-base">98.4%</span> <span data-en="Completion"
+                  data-ar="نسبة الإنجاز">Completion</span></div>
+              <div><span class="text-[#D32F2F] font-bold block text-base">12 Labs</span> <span data-en="Dammam"
+                  data-ar="الدمام">Dammam</span></div>
+            </div>
+          </div>
+
+          <!-- Card 2: LMS Integration (Middle layer z-20, slides up) -->
+          <div class="nelc-card absolute inset-0 w-full h-full p-8 sm:p-10 rounded-3xl bg-[#131B4D] border border-white/15 shadow-2xl flex flex-col justify-between text-start z-20">
+            <div>
+              <div data-en="STANDARD 02" data-ar="المعيار 02"
+                class="text-xs font-mono text-[#D32F2F] uppercase mb-2 font-bold">STANDARD 02</div>
+              <h3 data-en="LMS Integration" data-ar="تكامل نظام إدارة التعلم"
+                class="font-display font-extrabold text-2xl sm:text-3xl mb-2 text-white">LMS Integration</h3>
+              <div data-en="Enterprise SSO & Automated HRIS Compliance"
+                data-ar="الدخول الموحد للشركات والتكامل التلقائي مع الموارد البشرية"
+                class="text-xs text-red-300 font-mono mb-4 font-semibold">Enterprise SSO & Automated HRIS Compliance</div>
+              <p data-en="Seamless SCORM 2004/xAPI modules with biometric attendance synchronization, real-time employee skill audits, and Azure AD / SAP SuccessFactors integrations."
+                data-ar="تكامل سلس مع وحدات SCORM و xAPI ومزامنة الحضور البيومتري وتدقيق مهارات الموظفين مع أنظمة Azure AD و SAP."
+                class="text-sm text-slate-200 leading-relaxed mb-6 font-light">
+                Seamless SCORM 2004/xAPI modules with biometric attendance synchronization, real-time employee skill audits,
+                and Azure AD / SAP SuccessFactors integrations.
+              </p>
+            </div>
+            <div
+              class="grid grid-cols-3 gap-3 p-3 bg-[#0E143A]/80 border border-white/10 rounded-xl text-center text-xs font-mono text-slate-300">
+              <div><span class="text-white font-bold block text-base">99.98%</span> <span data-en="Uptime"
+                  data-ar="جاهزية النظام">Uptime</span></div>
+              <div><span class="text-white font-bold block text-base">SAML 2.0</span> <span data-en="SSO"
+                  data-ar="دخول موحد">SSO</span></div>
+              <div><span class="text-[#D32F2F] font-bold block text-base">1-Click</span> <span data-en="Audits"
+                  data-ar="تدقيق فوري">Audits</span></div>
+            </div>
+          </div>
+
+          <!-- Card 3: NELC Compliance (Top layer z-30, slides up) -->
+          <div class="nelc-card absolute inset-0 w-full h-full p-8 sm:p-10 rounded-3xl bg-[#131B4D] border border-white/15 shadow-2xl flex flex-col justify-between text-start z-30">
+            <div>
+              <div data-en="STANDARD 03" data-ar="المعيار 03"
+                class="text-xs font-mono text-[#D32F2F] uppercase mb-2 font-bold">STANDARD 03</div>
+              <h3 data-en="NELC Compliance" data-ar="اعتماد المركز الوطني للتعليم الإلكتروني"
+                class="font-display font-extrabold text-2xl sm:text-3xl mb-2 text-white">NELC Compliance</h3>
+              <div data-en="National Qualifications Framework Benchmark" data-ar="معيار الإطار الوطني للمؤهلات"
+                class="text-xs text-red-300 font-mono mb-4 font-semibold">National Qualifications Framework Benchmark</div>
+              <p data-en="Rigorous oversight ensuring verified digital content, qualified master instructors, and government-recognized certifications mapped to NQF Levels 5 through 7."
+                data-ar="رقابة صارمة تضمن محتوى رقمياً معتمداً، ومدربين خبراء مؤهلين، وشهادات معترف بها حكومياً ومتوافقة مع مستويات الإطار الوطني للمؤهلات من 5 إلى 7."
+                class="text-sm text-slate-200 leading-relaxed mb-6 font-light">
+                Rigorous oversight ensuring verified digital content, qualified master instructors, and
+                government-recognized certifications mapped to NQF Levels 5 through 7.
+              </p>
+            </div>
+            <div
+              class="grid grid-cols-3 gap-3 p-3 bg-[#0E143A]/80 border border-white/10 rounded-xl text-center text-xs font-mono text-slate-300">
+              <div><span class="text-white font-bold block text-base">#SA-8492</span> <span data-en="License"
+                  data-ar="ترخيص رسمي">License</span></div>
+              <div><span class="text-white font-bold block text-base">Level 7</span> <span data-en="NQF"
+                  data-ar="الإطار الوطني">NQF</span></div>
+              <div><span class="text-[#D32F2F] font-bold block text-base">100%</span> <span data-en="Verified"
+                  data-ar="معتمد وموثق">Verified</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       3. DYNAMIC COURSE SHOWCASE (Clean Off-White Light Section with RTL-Aware Track)
+       ========================================================================== -->
+  <section id="courses"
+    class="relative w-full min-h-screen bg-[#F8F9FA] py-20 overflow-hidden flex flex-col justify-center border-t border-gray-200">
+    <div class="max-w-7xl mx-auto px-6 w-full mb-8 flex justify-between items-end">
+      <div class="text-start">
+        <div data-en="EXECUTIVE & INDUSTRIAL CURRICULUM" data-ar="المناهج التنفيذية والصناعية"
+          class="text-xs font-mono text-[#D32F2F] uppercase tracking-widest mb-2 font-bold">
+          EXECUTIVE & INDUSTRIAL CURRICULUM
+        </div>
+        <h2 class="font-display font-black text-3xl sm:text-5xl uppercase text-[#131B4D]">
+          <span data-en="Course Showcase" data-ar="دليل البرامج التدريبية">Course Showcase</span><span
+            class="text-[#D32F2F]">.</span>
+        </h2>
+      </div>
+      <div data-en="HORIZONTAL SCROLL TRACK →" data-ar="مسار التمرير الأفقي ←"
+        class="text-xs font-mono text-gray-500 font-medium">HORIZONTAL SCROLL TRACK →</div>
+    </div>
+
+    <div class="courses-track-wrap w-full overflow-hidden px-6">
+      <div class="courses-track flex gap-8 will-change-transform" style="width: max-content;">
+
+        <!-- Course Card 1: HSE Track -->
+        <div
+          class="w-[85vw] sm:w-[540px] p-8 rounded-3xl bg-white border border-gray-200 shadow-lg flex-shrink-0 flex flex-col justify-between transition-all hover:shadow-2xl text-start">
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <span data-en="HSE TRACK" data-ar="مسار السلامة والصحة المهنية"
+                class="px-3 py-1 rounded-full text-xs font-mono bg-red-50 text-[#D32F2F] font-bold border border-red-100">
+                HSE TRACK
+              </span>
+              <span data-en="TRACK 01" data-ar="المسار 01" class="text-xs font-mono text-gray-400">TRACK 01</span>
+            </div>
+            <h3 data-en="Occupational Health & Industrial Risk" data-ar="الصحة المهنية وإدارة المخاطر الصناعية"
+              class="font-display font-extrabold text-2xl sm:text-3xl text-[#131B4D] mb-2 leading-tight">
+              Occupational Health & Industrial Risk
+            </h3>
+            <div data-en="Aramco WPR & OSHA Process Safety Standards"
+              data-ar="معايير أرامكو WPR وسلامة العمليات وفق OSHA"
+              class="text-xs font-mono text-[#D32F2F] font-semibold mb-4">
+              Aramco WPR & OSHA Process Safety Standards
+            </div>
+            <p data-en="Hazard identification, quantitative risk assessment (QRA), confined space safety, and high-pressure hydrocarbon containment for Eastern Province refineries."
+              data-ar="تحديد المخاطر، التقييم الكمي للمخاطر (QRA)، سلامة الأماكن المحصورة، واحتواء الهيدروكربونات ذات الضغط العالي لمصافي المنطقة الشرقية."
+              class="text-xs text-gray-600 leading-relaxed mb-6">
+              Hazard identification, quantitative risk assessment (QRA), confined space safety, and high-pressure
+              hydrocarbon containment for Eastern Province refineries.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+            <span data-en="6 WEEKS • 120 HOURS • NEBOSH" data-ar="6 أسابيع • 120 ساعة • اعتماد NEBOSH"
+              class="text-xs font-mono font-bold text-[#131B4D]">6 WEEKS • 120 HOURS • NEBOSH</span>
+            <button type="button" onclick="openCourseModal(0)" data-en="Enroll Now" data-ar="سجل الآن"
+              class="px-4 py-2 rounded-lg bg-[#131B4D] hover:bg-[#0E143A] text-white text-xs font-mono font-bold transition-colors cursor-pointer shadow-sm">
+              Enroll Now
+            </button>
+          </div>
+        </div>
+
+        <!-- Course Card 2: Technical Automation (Featured Navy Card) -->
+        <div
+          class="w-[85vw] sm:w-[540px] p-8 rounded-3xl bg-[#131B4D] border-2 border-[#D32F2F] shadow-2xl flex-shrink-0 flex flex-col justify-between transition-all relative overflow-hidden text-start">
+          <div class="absolute -top-12 -right-12 w-48 h-48 bg-[#D32F2F]/20 rounded-full blur-2xl pointer-events-none"></div>
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <span data-en="AUTOMATION TRACK" data-ar="مسار الأتمتة والتقنية"
+                class="px-3 py-1 rounded-full text-xs font-mono bg-[#D32F2F] text-white font-bold">
+                FEATURED PROGRAM
+              </span>
+              <span data-en="TRACK 02" data-ar="المسار 02" class="text-xs font-mono text-red-300">TRACK 02</span>
+            </div>
+            <h3 data-en="Industrial Automation & SCADA Engineering" data-ar="الأتمتة الصناعية وهندسة سكادا"
+              class="font-display font-extrabold text-2xl sm:text-3xl text-white mb-2 leading-tight">
+              Industrial Automation & SCADA Engineering
+            </h3>
+            <div data-en="Siemens S7-1500 & Rockwell PlantPAx Lab"
+              data-ar="مختبرات سيمنز S7-1500 وروكويل PlantPAx"
+              class="text-xs font-mono text-red-300 font-semibold mb-4">
+              Siemens S7-1500 & Rockwell PlantPAx Lab
+            </div>
+            <p data-en="Hands-on PLC ladder logic, distributed control systems (DCS), industrial ethernet security, and fieldbus diagnostics deployed on real-world test rigs in Dammam."
+              data-ar="برمجة الـ PLC العملية، أنظمة التحكم الموزعة (DCS)، أمن الشبكات الصناعية، وتشخيص أعطال ناقل المجال على منصات اختبار واقعية بالدمام."
+              class="text-xs text-slate-300 leading-relaxed mb-6">
+              Hands-on PLC ladder logic, distributed control systems (DCS), industrial ethernet security, and fieldbus
+              diagnostics deployed on real-world test rigs in Dammam.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-white/20 flex items-center justify-between">
+            <span data-en="8 WEEKS • 160 LAB HOURS • NELC" data-ar="8 أسابيع • 160 ساعة مختبر • ترخيص NELC"
+              class="text-xs font-mono font-bold text-white">8 WEEKS • 160 LAB HOURS • NELC</span>
+            <button type="button" onclick="openCourseModal(1)" data-en="Enroll Now" data-ar="سجل الآن"
+              class="px-4 py-2 rounded-lg bg-[#D32F2F] hover:bg-[#B71C1C] text-white text-xs font-mono font-bold shadow-md hover:shadow-lg shadow-red-900/40 transition-all cursor-pointer">
+              Enroll Now
+            </button>
+          </div>
+        </div>
+
+        <!-- Course Card 3: Leadership Track -->
+        <div
+          class="w-[85vw] sm:w-[540px] p-8 rounded-3xl bg-white border border-gray-200 shadow-lg flex-shrink-0 flex flex-col justify-between transition-all hover:shadow-2xl text-start">
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <span data-en="LEADERSHIP TRACK" data-ar="المسار القيادي"
+                class="px-3 py-1 rounded-full text-xs font-mono bg-red-50 text-[#D32F2F] font-bold border border-red-100">
+                LEADERSHIP TRACK
+              </span>
+              <span data-en="TRACK 03" data-ar="المسار 03" class="text-xs font-mono text-gray-400">TRACK 03</span>
+            </div>
+            <h3 data-en="Executive Strategic Governance" data-ar="الحوكمة الاستراتيجية والقيادة التنفيذية"
+              class="font-display font-extrabold text-2xl sm:text-3xl text-[#131B4D] mb-2 leading-tight">
+              Executive Strategic Governance
+            </h3>
+            <div data-en="Mega-Projects & Vision 2030 Corporate Operations"
+              data-ar="إدارة المشاريع العملاقة وعمليات رؤية 2030"
+              class="text-xs font-mono text-[#D32F2F] font-semibold mb-4">
+              Mega-Projects & Vision 2030 Corporate Operations
+            </div>
+            <p data-en="Designed for directors and plant superintendents. Agile capital expenditure governance, corporate ESG compliance, and high-performance Saudization talent models."
+              data-ar="مخصص للمدراء التنفيذيين ورؤساء المحطات والمنشآت. حوكمة النفقات الرأسمالية، الامتثال لمعايير الاستدامة والحوكمة، ونماذج التوطين عالية الكفاءة."
+              class="text-xs text-gray-600 leading-relaxed mb-6">
+              Designed for directors and plant superintendents. Agile capital expenditure governance, corporate ESG
+              compliance, and high-performance Saudization talent models.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+            <span data-en="4 WEEKS • WEEKEND COHORT • ILM" data-ar="4 أسابيع • نهاية الأسبوع • اعتماد ILM"
+              class="text-xs font-mono font-bold text-[#131B4D]">4 WEEKS • WEEKEND COHORT • ILM</span>
+            <button type="button" onclick="openCourseModal(2)" data-en="Enroll Now" data-ar="سجل الآن"
+              class="px-4 py-2 rounded-lg bg-[#131B4D] hover:bg-[#0E143A] text-white text-xs font-mono font-bold transition-colors cursor-pointer shadow-sm">
+              Enroll Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       4. THE QR CERTIFICATE REVEAL (Clean High-Contrast White Section with 3D Scrub)
+       ========================================================================== -->
+  <section id="certificate"
+    class="relative w-full min-h-screen bg-white text-[#131B4D] py-28 px-6 flex flex-col items-center justify-center text-center border-t border-gray-200 perspective-1000">
+    <div class="max-w-5xl mx-auto flex flex-col items-center">
+      <!-- Badge -->
+      <div data-en="TAMPER-PROOF VERIFICATION" data-ar="تحقق موثق وغير قابل للتلاعب"
+        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 border border-red-200 text-[#D32F2F] text-xs font-mono font-bold mb-4">
+        TAMPER-PROOF VERIFICATION
+      </div>
+
+      <h2 data-en="Scan. Verify. Succeed." data-ar="امسح. تحقق. انجح."
+        class="font-display font-black text-4xl sm:text-6xl uppercase tracking-tight text-[#131B4D] mb-2">
+        Scan. Verify. Succeed.
+      </h2>
+      <p data-en="Instant QR Verification for Employers." data-ar="تحقق فوري عبر رمز الاستجابة السريعة لجهات العمل."
+        class="font-display text-lg sm:text-2xl text-gray-600 mb-10">
+        Instant QR Verification for Employers.
+      </p>
+
+      <!-- Realistic Training Certificate Card -->
+      <div
+        class="certificate-card w-full max-w-3xl p-6 sm:p-10 rounded-3xl bg-white border-2 border-gray-200 shadow-2xl text-start relative overflow-hidden transition-all will-change-transform">
+        <div
+          class="p-6 sm:p-8 border-2 border-[#131B4D]/20 rounded-2xl bg-gradient-to-b from-[#F8F9FA] to-white relative">
+
+          <!-- Certificate Header -->
+          <div class="flex justify-between items-center border-b border-gray-200 pb-4 mb-6">
+            <div class="text-start">
+              <div data-en="STAR EDUCATION INSTITUTE" data-ar="معهد ستار للتعليم"
+                class="font-display font-extrabold text-xl text-[#131B4D]">STAR EDUCATION INSTITUTE</div>
+              <div data-en="DAMMAM • KINGDOM OF SAUDI ARABIA" data-ar="الدمام • المملكة العربية السعودية"
+                class="text-xs font-mono text-[#D32F2F] font-semibold">DAMMAM • KINGDOM OF SAUDI ARABIA</div>
+            </div>
+            <div data-en="NELC ACCREDITED #SA-8492" data-ar="معتمد من NELC ترخيص #SA-8492"
+              class="text-xs font-mono font-bold px-3 py-1 bg-red-50 text-[#D32F2F] border border-red-200 rounded-full">
+              NELC ACCREDITED #SA-8492
+            </div>
+          </div>
+
+          <!-- Certificate Recipient -->
+          <div class="text-center my-6">
+            <div data-en="CERTIFICATE OF EXECUTIVE COMPETENCE" data-ar="شهادة الكفاءة التنفيذية"
+              class="text-[10px] font-mono uppercase tracking-widest text-gray-400">CERTIFICATE OF EXECUTIVE COMPETENCE
+            </div>
+            <div data-en="Awarded to:" data-ar="ممنوحة إلى:" class="text-xs text-gray-500 my-2">Awarded to:</div>
+            <div data-en="Abdulrahman M. Al-Ghamdi" data-ar="عبدالرحمن محمد الغامدي"
+              class="font-display font-black text-2xl sm:text-3xl text-[#131B4D]">Abdulrahman M. Al-Ghamdi</div>
+            <div data-en="Executive Process Safety Management & Advanced HAZOP"
+              data-ar="إدارة سلامة العمليات التنفيذية ودراسات HAZOP المتقدمة"
+              class="text-sm font-semibold text-[#D32F2F] mt-2">Executive Process Safety Management & Advanced HAZOP
+            </div>
+          </div>
+
+          <!-- Certificate Footer & Clickable QR Code -->
+          <div class="flex flex-col sm:flex-row justify-between items-center pt-6 border-t border-gray-200 gap-4">
+            <div class="text-xs font-mono text-gray-500 space-y-1 text-center sm:text-start">
+              <div><strong class="text-gray-700">Serial ID:</strong> #SA-NELC-2026-X8492</div>
+              <div><strong class="text-gray-700">Date Issued:</strong> February 18, 2026</div>
+              <div><strong class="text-gray-700">Audit Status:</strong> Sovereign Blockchain Verified</div>
+            </div>
+
+            <button type="button" onclick="triggerVerificationModal()"
+              class="group flex items-center justify-end gap-4 p-2.5 rounded-2xl bg-slate-50 hover:bg-red-50 border border-slate-200 hover:border-[#D32F2F]/40 transition-all cursor-pointer">
+              <div class="p-2 bg-[#131B4D] group-hover:bg-[#D32F2F] rounded-xl flex items-center justify-center shadow-md transition-colors">
+                <svg viewBox="0 0 100 100" class="w-16 h-16 text-white" fill="currentColor">
+                  <rect x="5" y="5" width="28" height="28" fill="white" rx="3" />
+                  <rect x="9" y="9" width="20" height="20" fill="#131B4D" rx="2" />
+                  <rect x="13" y="13" width="12" height="12" fill="white" />
+                  <rect x="67" y="5" width="28" height="28" fill="white" rx="3" />
+                  <rect x="71" y="9" width="20" height="20" fill="#131B4D" rx="2" />
+                  <rect x="75" y="13" width="12" height="12" fill="white" />
+                  <rect x="5" y="67" width="28" height="28" fill="white" rx="3" />
+                  <rect x="9" y="71" width="20" height="20" fill="#131B4D" rx="2" />
+                  <rect x="13" y="75" width="12" height="12" fill="white" />
+                  <rect x="40" y="20" width="8" height="8" fill="white" />
+                  <rect x="52" y="40" width="8" height="8" fill="white" />
+                  <rect x="40" y="60" width="8" height="8" fill="white" />
+                </svg>
+              </div>
+              <div class="text-start">
+                <div data-en="CLICK TO VERIFY" data-ar="اضغط للتحقق الفوري"
+                  class="text-xs font-mono font-bold text-[#131B4D] group-hover:text-[#D32F2F] transition-colors">
+                  CLICK TO VERIFY ↗
+                </div>
+                <div data-en="Official Sovereign Registry" data-ar="السجل السيادي المعتمد"
+                  class="text-[10px] text-gray-500">Official Sovereign Registry</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       5. BOTTOM CTA SECTION (Brand Navy & Crimson Spring Magnetic CTA with Zenox Neon Wave)
+       ========================================================================== -->
+  <section id="portal-cta"
+    class="relative w-full bg-[#131B4D] text-white py-28 px-6 border-t border-white/10 flex flex-col items-center text-center overflow-hidden">
+    
+    <!-- Zenox Flowing Neon Light Waves (Before Footer & Behind Portal CTA) -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+      <!-- Ambient Deep Glow -->
+      <div class="absolute -bottom-20 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full bg-gradient-to-t from-[#D32F2F]/25 via-rose-600/15 to-transparent blur-[140px] zenox-glow-pulse"></div>
+
+      <!-- Flowing Neon Wave Ribbon Across Bottom CTA -->
+      <svg class="zenox-diagonal-ribbon-1 absolute -bottom-20 -left-20 w-[125vw] max-w-[1900px] h-[450px] opacity-75 filter blur-[0.5px]" viewBox="0 0 1600 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="zenox-footer-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#FF1744" stop-opacity="0.9" />
+            <stop offset="35%" stop-color="#D32F2F" stop-opacity="0.8" />
+            <stop offset="70%" stop-color="#880E4F" stop-opacity="0.5" />
+            <stop offset="100%" stop-color="#131B4D" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        <path d="M-50,420 C320,240 680,380 1100,180 C1380,50 1520,70 1680,20 L1680,80 C1490,140 1340,120 1080,240 C680,440 320,310 -50,470 Z" fill="url(#zenox-footer-grad)" filter="url(#zenox-diagonal-blur)" />
+        <path d="M-50,430 C320,250 680,390 1100,190 C1380,60 1520,80 1680,30" stroke="url(#zenox-diagonal-neon)" stroke-width="4.5" stroke-linecap="round" />
+        <path d="M-50,445 C325,265 685,405 1105,205 C1385,75 1525,95 1680,45" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" opacity="0.85" />
+      </svg>
+    </div>
+
+    <div class="max-w-4xl mx-auto w-full relative z-10">
+      <div data-en="ENTERPRISE LMS GATEWAY" data-ar="بوابة نظام إدارة التعلم للشركات"
+        class="text-xs font-mono text-red-200 uppercase tracking-widest mb-4 font-bold bg-white/10 px-4 py-1.5 rounded-full inline-block border border-white/10">
+        ENTERPRISE LMS GATEWAY
+      </div>
+      <h2 data-en="Accelerate Enterprise Capability." data-ar="تسريع الكفاءات والقدرات المؤسسية."
+        class="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight mb-8 text-white">
+        Accelerate Enterprise Capability.
+      </h2>
+
+      <!-- MASSIVE ACTION RED MAGNETIC BUTTON (Smooth Spring Physics) -->
+      <button id="magnetic-btn" type="button" onclick="openPortalModal()" data-en="Access LMS Portal ↗" data-ar="الدخول إلى بوابة التدريب ↗"
+        class="w-full py-10 sm:py-12 px-6 sm:px-8 rounded-3xl bg-[#D32F2F] hover:bg-[#B71C1C] text-white font-display font-black text-2xl sm:text-5xl lg:text-6xl uppercase tracking-wider shadow-[0_0_50px_rgba(211,47,47,0.35)] hover:shadow-[0_0_80px_rgba(211,47,47,0.6)] transition-all duration-200 active:scale-95 cursor-pointer select-none text-center">
+        Access LMS Portal ↗
+      </button>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-12 text-xs font-mono text-slate-200 text-start">
+        <div><span class="text-[#D32F2F] font-bold me-1">✓</span> <span data-en="NELC Single Sign-On"
+            data-ar="الدخول الموحد عبر NELC">NELC Single Sign-On</span></div>
+        <div><span class="text-[#D32F2F] font-bold me-1">✓</span> <span data-en="Real-time HR Audits"
+            data-ar="تدقيق فوري لمسؤولي الموارد البشرية">Real-time HR Audits</span></div>
+        <div><span class="text-[#D32F2F] font-bold me-1">✓</span> <span data-en="Digital Credential Vault"
+            data-ar="خزينة الشهادات الرقمية الموثقة">Digital Credential Vault</span></div>
+        <div><span class="text-[#D32F2F] font-bold me-1">✓</span> <span data-en="Dammam Industrial Labs"
+            data-ar="مختبرات صناعية تطبيقية في الدمام">Dammam Industrial Labs</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       6. COMPLETE FOOTER (Brand Navy Dark with Crimson Accents)
+       ========================================================================== -->
+  <footer id="footer" class="relative bg-[#0E143A] text-slate-300 pt-20 pb-12 border-t border-white/10 overflow-hidden">
+    <!-- Flowing Ambient Top Glow Connecting from Section 5 -->
+    <div
+      class="absolute top-0 right-1/4 w-[600px] h-[350px] bg-gradient-to-b from-[#D32F2F]/20 via-rose-600/10 to-transparent rounded-full blur-[140px] pointer-events-none">
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <!-- 3-Column Responsive Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-white/10">
+
+        <!-- Column 1: Brand & Headquarters (5 cols) -->
+        <div class="lg:col-span-5 text-start">
+          <div class="flex items-center gap-3 mb-6">
+            <img src="/STAREDUCATIONLOGO.png" alt="Star Education Logo"
+              class="h-10 w-auto object-contain shrink-0 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]" loading="lazy" />
+            <div class="flex flex-col text-start">
+              <span data-en="STAR EDUCATION" data-ar="ستار للتعليم"
+                class="font-display font-bold tracking-widest uppercase text-white text-lg sm:text-xl leading-tight">
+                STAR EDUCATION
+              </span>
+              <span data-en="CORPORATE TRAINING INSTITUTE • DAMMAM" data-ar="معهد التدريب المؤسسي • الدمام"
+                class="text-[9px] font-mono uppercase tracking-widest text-[#D32F2F] font-bold leading-tight mt-0.5">
+                CORPORATE TRAINING INSTITUTE • DAMMAM
+              </span>
+            </div>
+          </div>
+
+          <p data-en="Pioneering corporate executive training, technical industrial automation, and HSE certifications tailored to Saudi Aramco, SABIC, and regional industrial supply chain requirements across the Eastern Province."
+            data-ar="ريادة التدريب التنفيذي للمؤسسات، والأتمتة الصناعية، وشهادات الصحة والسلامة والبيئة المتوافقة مع متطلبات أرامكو السعودية وسابك وسلاسل الإمداد في المنطقة الشرقية."
+            class="text-sm text-slate-300 leading-relaxed max-w-md mb-8 font-light">
+            Pioneering corporate executive training, technical industrial automation, and HSE certifications
+            tailored to Saudi Aramco, SABIC, and regional industrial supply chain requirements across the Eastern
+            Province.
+          </p>
+
+          <div class="space-y-3.5 text-xs font-mono text-slate-300">
+            <div class="flex items-start gap-3">
+              <svg class="w-4 h-4 text-[#D32F2F] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span data-en="King Fahd Road, Golden Belt District, Dammam 32415, Eastern Province, KSA"
+                data-ar="طريق الملك فهد، حي الحزام الذهبي، الدمام 32415، المنطقة الشرقية، المملكة العربية السعودية">
+                King Fahd Road, Golden Belt District, Dammam 32415, Eastern Province, KSA
+              </span>
+            </div>
+            <div class="flex items-center gap-3">
+              <svg class="w-4 h-4 text-[#D32F2F] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              <span dir="ltr">+966 13 890 4200 / +966 50 123 9842</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <svg class="w-4 h-4 text-[#D32F2F] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <a href="mailto:corporate@stareducation.sa" class="hover:text-[#D32F2F] transition-colors">
+                corporate@stareducation.sa
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 2: Navigation Links (3 cols) -->
+        <div class="lg:col-span-3 text-start">
+          <h3 data-en="NAVIGATION" data-ar="التنقل السريع"
+            class="text-xs font-mono uppercase font-bold text-white tracking-widest mb-6">
+            NAVIGATION
+          </h3>
+          <ul class="space-y-3.5 text-sm">
+            <li>
+              <a href="#hero" data-en="Future-Proof Hero" data-ar="الرئيسية"
+                class="inline-block text-slate-300 hover:text-[#D32F2F] transition-colors">
+                Future-Proof Hero
+              </a>
+            </li>
+            <li>
+              <a href="#nelc" data-en="The NELC Standard" data-ar="معيار NELC"
+                class="inline-block text-slate-300 hover:text-[#D32F2F] transition-colors">
+                The NELC Standard
+              </a>
+            </li>
+            <li>
+              <a href="#courses" data-en="Dynamic Course Showcase" data-ar="المناهج والدورات"
+                class="inline-block text-slate-300 hover:text-[#D32F2F] transition-colors">
+                Dynamic Course Showcase
+              </a>
+            </li>
+            <li>
+              <a href="#certificate" data-en="QR Certificate Verification" data-ar="التحقق من الشهادات"
+                class="inline-block text-slate-300 hover:text-[#D32F2F] transition-colors">
+                QR Certificate Verification
+              </a>
+            </li>
+            <li>
+              <button type="button" onclick="openPortalModal()" data-en="Enterprise LMS Portal" data-ar="بوابة المتدربين LMS"
+                class="inline-block text-slate-300 hover:text-[#D32F2F] transition-colors cursor-pointer text-start">
+                Enterprise LMS Portal
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Accreditations & Recognition (4 cols) -->
+        <div class="lg:col-span-4 text-start">
+          <h3 data-en="ACCREDITATIONS & RECOGNITION" data-ar="الاعتمادات والاعتراف الدولي"
+            class="text-xs font-mono uppercase font-bold text-white tracking-widest mb-6">
+            ACCREDITATIONS &amp; RECOGNITION
+          </h3>
+
+          <!-- 2x2 Badge Grid -->
+          <div class="grid grid-cols-2 gap-3 mb-4">
+            <div class="p-3.5 rounded-xl bg-white/5 border border-white/10 hover:border-[#D32F2F]/50 transition-colors">
+              <div data-en="NELC Certified" data-ar="معتمد من NELC" class="text-xs font-bold text-white mb-1">NELC Certified</div>
+              <div class="text-[10px] font-mono text-red-300 font-semibold">Lic. #SA-NELC-8492</div>
+            </div>
+            <div class="p-3.5 rounded-xl bg-white/5 border border-white/10 hover:border-[#D32F2F]/50 transition-colors">
+              <div data-en="TVTC Authorized" data-ar="مرخص من المؤسسة العامة للتدريب"
+                class="text-xs font-bold text-white mb-1">TVTC Authorized</div>
+              <div data-en="Vocational Registry" data-ar="السجل المهني المعتمد"
+                class="text-[10px] font-mono text-red-300 font-semibold">Vocational Registry</div>
+            </div>
+            <div class="p-3.5 rounded-xl bg-white/5 border border-white/10 hover:border-[#D32F2F]/50 transition-colors">
+              <div data-en="ISO 9001:2015" data-ar="آيزو 9001:2015" class="text-xs font-bold text-white mb-1">ISO 9001:2015</div>
+              <div data-en="Quality Certified" data-ar="معايير الجودة العالمية"
+                class="text-[10px] font-mono text-red-300 font-semibold">Quality Certified</div>
+            </div>
+            <div class="p-3.5 rounded-xl bg-white/5 border border-white/10 hover:border-[#D32F2F]/50 transition-colors">
+              <div data-en="NEBOSH / IOSH" data-ar="نيبوش / أيوش" class="text-xs font-bold text-white mb-1">NEBOSH / IOSH</div>
+              <div data-en="Accredited Centre" data-ar="مركز معتمد دولياً"
+                class="text-[10px] font-mono text-red-300 font-semibold">Accredited Centre</div>
+            </div>
+          </div>
+
+          <!-- NQF & Vision 2030 Banner -->
+          <div class="p-3.5 rounded-xl bg-[#131B4D] border border-[#D32F2F]/40 flex items-center gap-3 shadow-md">
+            <svg class="w-5 h-5 text-[#D32F2F] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+              stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            <div
+              data-en="All curricula mapped to the National Qualifications Framework (NQF) & Saudi Vision 2030 human capability goals."
+              data-ar="جميع المناهج متوافقة مع الإطار الوطني للمؤهلات (NQF) ومستهدفات برنامج تنمية القدرات البشرية لرؤية 2030."
+              class="text-[11px] text-slate-200 leading-snug font-light">
+              All curricula mapped to the National Qualifications Framework (NQF) &amp; Saudi Vision 2030 human
+              capability goals.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar: Copyright & Back to Top -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
+        <p data-en="© 2026 Star Education Institute (Dammam). All rights reserved. Registered under Ministry of Education & NELC regulations."
+          data-ar="© 2026 معهد ستار للتعليم (الدمام). جميع الحقوق محفوظة. مرخص ومعتمد وفق لوائح المركز الوطني للتعليم الإلكتروني."
+          class="text-slate-400 text-center sm:text-start">
+          © 2026 Star Education Institute (Dammam). All rights reserved. Registered under Ministry of Education &amp;
+          NELC regulations.
+        </p>
+
+        <button type="button" id="back-to-top-btn"
+          class="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 hover:bg-[#D32F2F] border border-white/10 hover:border-[#D32F2F] text-white transition-all duration-300 shrink-0 cursor-pointer shadow-sm hover:shadow-[0_0_15px_rgba(211,47,47,0.3)] select-none focus:outline-none"
+          aria-label="Back to top">
+          <span data-en="BACK TO TOP" data-ar="إلى الأعلى" class="text-[11px] tracking-wider uppercase font-medium">BACK
+            TO TOP</span>
+          <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-y-0.5" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODAL 1: COURSE DETAILS / ENROLLMENT MODAL
+       ========================================================================== -->
+  <div id="course-modal" class="fixed inset-0 z-[110] hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
+    <div class="relative w-full max-w-2xl bg-[#0E143A] border border-white/20 rounded-3xl p-6 sm:p-8 text-white shadow-2xl my-8">
+      <!-- Close button -->
+      <button onclick="closeCourseModal()" type="button" class="absolute top-5 right-5 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+      </button>
+
+      <span id="modal-course-badge" class="px-3 py-1 rounded-full text-xs font-mono bg-red-500/20 text-[#D32F2F] border border-[#D32F2F]/40 font-bold inline-block mb-3">
+        TRACK DETAILS
+      </span>
+      <h3 id="modal-course-title" class="font-display font-black text-2xl sm:text-3xl text-white mb-2">
+        Course Title
+      </h3>
+      <div id="modal-course-sub" class="text-xs font-mono text-red-300 mb-4">
+        Accreditation details
+      </div>
+      <p id="modal-course-desc" class="text-sm text-slate-300 leading-relaxed mb-6">
+        Full course description and syllabus overview.
+      </p>
+
+      <div class="grid grid-cols-2 gap-3 p-4 bg-[#131B4D] rounded-2xl border border-white/10 mb-6 text-xs font-mono">
+        <div><strong class="text-white block">Duration:</strong> <span id="modal-course-duration" class="text-slate-300">6 Weeks</span></div>
+        <div><strong class="text-white block">Credential:</strong> <span id="modal-course-cert" class="text-slate-300">NELC Level 7</span></div>
+      </div>
+
+      <!-- Quick Enrollment Form -->
+      <form onsubmit="handleEnrollSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-mono text-slate-300 mb-1">Full Name / الاسم الكامل</label>
+          <input type="text" required placeholder="e.g. Mohammed Al-Dossary"
+            class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 focus:border-[#D32F2F] focus:outline-none text-white text-sm" />
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-mono text-slate-300 mb-1">Corporate Email / البريد</label>
+            <input type="email" required placeholder="name@company.sa"
+              class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 focus:border-[#D32F2F] focus:outline-none text-white text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-mono text-slate-300 mb-1">Mobile / الجوال</label>
+            <input type="tel" required placeholder="+966 5x xxx xxxx"
+              class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 focus:border-[#D32F2F] focus:outline-none text-white text-sm" />
+          </div>
+        </div>
+        <button type="submit"
+          class="w-full py-3 rounded-xl bg-[#D32F2F] hover:bg-[#B71C1C] text-white font-display font-bold text-sm uppercase tracking-wider transition-all shadow-lg shadow-red-900/40 cursor-pointer">
+          Submit Enrollment Application
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 2: QR CERTIFICATE VERIFICATION (With Confetti)
+       ========================================================================== -->
+  <div id="verification-modal" class="fixed inset-0 z-[110] hidden flex items-center justify-center p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
+    <div class="relative w-full max-w-xl bg-white text-[#131B4D] rounded-3xl p-6 sm:p-8 shadow-2xl my-8 border-2 border-slate-200">
+      <button onclick="closeVerificationModal()" type="button" class="absolute top-5 right-5 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors cursor-pointer">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+      </button>
+
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+        </div>
+        <div>
+          <span class="text-xs font-mono font-bold text-emerald-600 uppercase tracking-wider">OFFICIAL SOVEREIGN REGISTRY</span>
+          <h3 class="font-display font-black text-2xl text-[#131B4D]">Certificate Authenticated</h3>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2.5 text-xs font-mono mb-6">
+        <div class="flex justify-between border-b border-slate-200 pb-2">
+          <span class="text-slate-500">Recipient:</span>
+          <strong class="text-slate-800">Abdulrahman M. Al-Ghamdi</strong>
+        </div>
+        <div class="flex justify-between border-b border-slate-200 pb-2">
+          <span class="text-slate-500">Program:</span>
+          <strong class="text-slate-800">Executive Process Safety &amp; HAZOP</strong>
+        </div>
+        <div class="flex justify-between border-b border-slate-200 pb-2">
+          <span class="text-slate-500">NELC License:</span>
+          <strong class="text-[#D32F2F]">#SA-NELC-8492</strong>
+        </div>
+        <div class="flex justify-between border-b border-slate-200 pb-2">
+          <span class="text-slate-500">Serial Hash:</span>
+          <span class="text-slate-600 font-mono">0x8F92...B4A1 (Immutable)</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-500">Status:</span>
+          <span class="text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Active &amp; Valid</span>
+        </div>
+      </div>
+
+      <button onclick="closeVerificationModal()" type="button"
+        class="w-full py-3 rounded-xl bg-[#131B4D] hover:bg-[#0E143A] text-white font-display font-bold text-sm uppercase tracking-wider transition-colors cursor-pointer">
+        Done
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 3: LMS PORTAL GATEWAY
+       ========================================================================== -->
+  <div id="portal-modal" class="fixed inset-0 z-[110] hidden flex items-center justify-center p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
+    <div class="relative w-full max-w-xl bg-[#0E143A] border border-white/20 rounded-3xl p-6 sm:p-8 text-white shadow-2xl my-8">
+      <button onclick="closePortalModal()" type="button" class="absolute top-5 right-5 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+      </button>
+
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-2xl bg-[#D32F2F]/20 text-[#D32F2F] flex items-center justify-center shrink-0 border border-[#D32F2F]/40">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" /></svg>
+        </div>
+        <div>
+          <span class="text-xs font-mono font-bold text-[#D32F2F] uppercase tracking-wider">ENTERPRISE GATEWAY</span>
+          <h3 class="font-display font-black text-2xl text-white">Star Education LMS Portal</h3>
+        </div>
+      </div>
+
+      <div class="flex p-1 rounded-xl bg-white/5 border border-white/10 mb-6">
+        <button id="tab-trainee-btn" type="button" onclick="switchPortalTab('trainee')"
+          class="flex-1 py-2 rounded-lg font-mono text-xs font-bold transition-all bg-[#D32F2F] text-white">
+          Trainee Login
+        </button>
+        <button id="tab-enterprise-btn" type="button" onclick="switchPortalTab('enterprise')"
+          class="flex-1 py-2 rounded-lg font-mono text-xs font-bold transition-all text-slate-400 hover:text-white">
+          Corporate SSO
+        </button>
+      </div>
+
+      <!-- Trainee Form -->
+      <form id="portal-form-trainee" onsubmit="handlePortalSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-mono text-slate-300 mb-1">National ID / Iqama Number</label>
+          <input type="text" required placeholder="10xxxxxxxx"
+            class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 focus:border-[#D32F2F] focus:outline-none text-white text-sm" />
+        </div>
+        <div>
+          <label class="block text-xs font-mono text-slate-300 mb-1">Password / رمز المرور</label>
+          <input type="password" required placeholder="••••••••"
+            class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 focus:border-[#D32F2F] focus:outline-none text-white text-sm" />
+        </div>
+        <button type="submit"
+          class="w-full py-3 rounded-xl bg-[#D32F2F] hover:bg-[#B71C1C] text-white font-display font-bold text-sm uppercase tracking-wider transition-all shadow-lg shadow-red-900/40 cursor-pointer">
+          Sign In to Trainee Dashboard
+        </button>
+      </form>
+
+      <!-- Enterprise Form -->
+      <form id="portal-form-enterprise" onsubmit="handlePortalSubmit(event)" class="space-y-4 hidden">
+        <div>
+          <label class="block text-xs font-mono text-slate-300 mb-1">Corporate Domain / الشركة</label>
+          <input type="text" required placeholder="e.g. aramco.com or sabic.com"
+            class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 focus:border-[#D32F2F] focus:outline-none text-white text-sm" />
+        </div>
+        <button type="submit"
+          class="w-full py-3 rounded-xl bg-[#131B4D] border border-white/20 hover:bg-[#1C2666] text-white font-display font-bold text-sm uppercase tracking-wider transition-all cursor-pointer">
+          Authorize via Azure AD / SAML SSO
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       ANIMATION, BILINGUAL & AUDIO JAVASCRIPT ENGINE
+       ========================================================================== -->
+  <script>
+    // =========================================================================
+    // 1. SYNTHESIZED WEB AUDIO FEEDBACK ENGINE
+    // =========================================================================
+    let audioContext = null;
+    let isSoundMuted = true;
+
+    function getAudioContext() {
+      if (!audioContext && (window.AudioContext || window.webkitAudioContext)) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioContext && audioContext.state === 'suspended') {
+        audioContext.resume();
+      }
+      return audioContext;
+    }
+
+    function playTone(freq = 600, duration = 0.05, type = 'sine') {
+      if (isSoundMuted) return;
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(0.04, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function playSuccessChime() {
+      if (isSoundMuted) return;
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+          setTimeout(() => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, ctx.currentTime);
+            gain.gain.setValueAtTime(0.05, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.3);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.3);
+          }, idx * 70);
+        });
+      } catch (e) {}
+    }
+
+    const soundToggleBtn = document.getElementById('sound-toggle-btn');
+    if (soundToggleBtn) {
+      soundToggleBtn.addEventListener('click', () => {
+        isSoundMuted = !isSoundMuted;
+        document.getElementById('sound-icon-on').classList.toggle('hidden', isSoundMuted);
+        document.getElementById('sound-icon-off').classList.toggle('hidden', !isSoundMuted);
+        if (!isSoundMuted) {
+          getAudioContext();
+          playTone(880, 0.08);
+        }
+      });
+    }
+
+    // =========================================================================
+    // 2. BILINGUAL LANGUAGE ENGINE (EN / AR)
+    // =========================================================================
+    let currentLanguage = 'en';
+
+    function setLanguage(lang) {
+      currentLanguage = lang;
+      const isArabic = currentLanguage === 'ar';
+
+      document.documentElement.dir = isArabic ? 'rtl' : 'ltr';
+      document.documentElement.lang = isArabic ? 'ar' : 'en';
+
+      document.body.style.fontFamily = isArabic ? "'Cairo', sans-serif" : "'Plus Jakarta Sans', sans-serif";
+
+      const enBadge = document.getElementById('lang-en');
+      const arBadge = document.getElementById('lang-ar');
+      if (enBadge && arBadge) {
+        if (isArabic) {
+          enBadge.className = 'px-2 py-0.5 rounded-md font-bold text-[11px] text-gray-300 hover:text-white';
+          arBadge.className = 'px-2 py-0.5 rounded-md font-bold text-[11px] bg-[#D32F2F] text-white shadow-sm';
+        } else {
+          enBadge.className = 'px-2 py-0.5 rounded-md font-bold text-[11px] bg-[#D32F2F] text-white shadow-sm';
+          arBadge.className = 'px-2 py-0.5 rounded-md font-bold text-[11px] text-gray-300 hover:text-white';
+        }
+      }
+
+      document.querySelectorAll('[data-en][data-ar]').forEach((el) => {
+        const text = isArabic ? el.getAttribute('data-ar') : el.getAttribute('data-en');
+        if (text) {
+          el.innerText = text;
+        }
+      });
+
+      // Recalculate GSAP ScrollTrigger layout math for LTR / RTL
+      if (window.ScrollTrigger) {
+        setTimeout(() => {
+          ScrollTrigger.refresh();
+        }, 150);
+      }
+    }
+
+    const langToggleBtn = document.getElementById('lang-toggle-btn');
+    if (langToggleBtn) {
+      langToggleBtn.addEventListener('click', () => {
+        playTone(700, 0.04);
+        setLanguage(currentLanguage === 'en' ? 'ar' : 'en');
+      });
+    }
+
+    // =========================================================================
+    // 3. INTERACTIVE MODALS LOGIC
+    // =========================================================================
+    const courseModal = document.getElementById('course-modal');
+    const verificationModal = document.getElementById('verification-modal');
+    const portalModal = document.getElementById('portal-modal');
+
+    const COURSES_INFO = [
+      {
+        badge: 'HSE TRACK 01',
+        title: 'Occupational Health & Industrial Risk',
+        sub: 'Aramco WPR & OSHA Process Safety Standards',
+        desc: 'Comprehensive training covering hazard identification, quantitative risk assessment (QRA), confined space protocols, and high-pressure hydrocarbon containment for Eastern Province oil & gas refineries.',
+        duration: '6 Weeks (120 Hours)',
+        cert: 'NEBOSH & TVTC Accredited'
+      },
+      {
+        badge: 'AUTOMATION TRACK 02',
+        title: 'Industrial Automation & SCADA Engineering',
+        sub: 'Siemens S7-1500 & Rockwell PlantPAx Lab',
+        desc: 'Practical PLC ladder logic programming, distributed control systems (DCS), industrial ethernet cybersecurity, and fieldbus diagnostics deployed on real-world industrial testing rigs in Dammam.',
+        duration: '8 Weeks (160 Lab Hours)',
+        cert: 'NELC #SA-8492 National License'
+      },
+      {
+        badge: 'LEADERSHIP TRACK 03',
+        title: 'Executive Strategic Governance',
+        sub: 'Mega-Projects & Vision 2030 Corporate Operations',
+        desc: 'Designed for directors and plant superintendents. Agile capital expenditure governance, corporate ESG compliance, and high-performance Saudization talent management models.',
+        duration: '4 Weeks (Weekend Cohort)',
+        cert: 'ILM Executive Benchmark'
+      }
+    ];
+
+    function openCourseModal(index) {
+      playTone(550, 0.05);
+      const data = COURSES_INFO[index] || COURSES_INFO[0];
+      document.getElementById('modal-course-badge').innerText = data.badge;
+      document.getElementById('modal-course-title').innerText = data.title;
+      document.getElementById('modal-course-sub').innerText = data.sub;
+      document.getElementById('modal-course-desc').innerText = data.desc;
+      document.getElementById('modal-course-duration').innerText = data.duration;
+      document.getElementById('modal-course-cert').innerText = data.cert;
+      courseModal.classList.remove('hidden');
+    }
+
+    function closeCourseModal() {
+      playTone(400, 0.04);
+      courseModal.classList.add('hidden');
+    }
+
+    function handleEnrollSubmit(e) {
+      e.preventDefault();
+      playSuccessChime();
+      alert('Enrollment application received! A representative from Star Education will contact you.');
+      closeCourseModal();
+    }
+
+    function triggerVerificationModal() {
+      playSuccessChime();
+      verificationModal.classList.remove('hidden');
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 80,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+      }
+    }
+
+    function closeVerificationModal() {
+      playTone(400, 0.04);
+      verificationModal.classList.add('hidden');
+    }
+
+    function openPortalModal() {
+      playTone(650, 0.05);
+      portalModal.classList.remove('hidden');
+    }
+
+    function closePortalModal() {
+      playTone(400, 0.04);
+      portalModal.classList.add('hidden');
+    }
+
+    function switchPortalTab(tab) {
+      playTone(600, 0.03);
+      const traineeBtn = document.getElementById('tab-trainee-btn');
+      const enterpriseBtn = document.getElementById('tab-enterprise-btn');
+      const traineeForm = document.getElementById('portal-form-trainee');
+      const enterpriseForm = document.getElementById('portal-form-enterprise');
+
+      if (tab === 'trainee') {
+        traineeBtn.className = 'flex-1 py-2 rounded-lg font-mono text-xs font-bold transition-all bg-[#D32F2F] text-white';
+        enterpriseBtn.className = 'flex-1 py-2 rounded-lg font-mono text-xs font-bold transition-all text-slate-400 hover:text-white';
+        traineeForm.classList.remove('hidden');
+        enterpriseForm.classList.add('hidden');
+      } else {
+        enterpriseBtn.className = 'flex-1 py-2 rounded-lg font-mono text-xs font-bold transition-all bg-[#D32F2F] text-white';
+        traineeBtn.className = 'flex-1 py-2 rounded-lg font-mono text-xs font-bold transition-all text-slate-400 hover:text-white';
+        enterpriseForm.classList.remove('hidden');
+        traineeForm.classList.add('hidden');
+      }
+    }
+
+    function handlePortalSubmit(e) {
+      e.preventDefault();
+      playSuccessChime();
+      alert('Connecting to Star Education sovereign SSO gateway...');
+      closePortalModal();
+    }
+
+    document.getElementById('open-portal-header-btn').addEventListener('click', openPortalModal);
+
+    // Close modals on Escape key or backdrop click
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeCourseModal();
+        closeVerificationModal();
+        closePortalModal();
+      }
+    });
+
+    [courseModal, verificationModal, portalModal].forEach((modal) => {
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            closeCourseModal();
+            closeVerificationModal();
+            closePortalModal();
+          }
+        });
+      }
+    });
+
+    // =========================================================================
+    // 4. GSAP & LENIS SCROLL TRIGGER INITIALIZATION
+    // =========================================================================
+    window.addEventListener('DOMContentLoaded', () => {
+      // 4.1 Initialize Lenis for smooth fluid scrolling
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        smoothWheel: true,
+        touchMultiplier: 1.5
+      });
+      window.lenis = lenis;
+
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+
+      // Register ScrollTrigger
+      gsap.registerPlugin(ScrollTrigger);
+
+      // 4.2 Smooth Scroll on in-page Anchor Links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+          const targetId = this.getAttribute('href');
+          if (targetId && targetId !== '#') {
+            e.preventDefault();
+            playTone(600, 0.03);
+            lenis.scrollTo(targetId, {
+              duration: 1.4,
+              easing: (t) => 1 - Math.pow(1 - t, 3)
+            });
+          }
+        });
+      });
+
+      // Hero scroll dive button
+      const heroScrollBtn = document.getElementById('hero-scroll-btn');
+      if (heroScrollBtn) {
+        heroScrollBtn.addEventListener('click', () => {
+          playTone(550, 0.04);
+          lenis.scrollTo('#nelc', { duration: 1.3, easing: (t) => 1 - Math.pow(1 - t, 3) });
+        });
+      }
+
+      // Back to top button
+      const backToTopBtn = document.getElementById('back-to-top-btn');
+      if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', () => {
+          playTone(600, 0.04);
+          lenis.scrollTo(0, { duration: 1.5, easing: (t) => 1 - Math.pow(1 - t, 3) });
+        });
+      }
+
+      // 4.3 Navbar Scroll Auto-Hide (Visible on first page / Hero, smoothly hides as user leaves Hero)
+      const header = document.getElementById('main-header');
+      ScrollTrigger.create({
+        trigger: '#hero',
+        start: 'bottom 85%',
+        onEnter: () => {
+          // As we scroll past the first page (Hero), hide the menu bar smoothly
+          gsap.to(header, {
+            yPercent: -120,
+            opacity: 0,
+            pointerEvents: 'none',
+            duration: 0.35,
+            ease: 'power2.inOut'
+          });
+        },
+        onLeaveBack: () => {
+          // When scrolling back to the first page, reveal the menu bar
+          gsap.to(header, {
+            yPercent: 0,
+            opacity: 1,
+            pointerEvents: 'auto',
+            duration: 0.35,
+            ease: 'power2.out'
+          });
+        }
+      });
+
+      // 4.4 SECTION 1: HERO INTRO SCRUB (Fluid 3D camera zoom, no horizontal clipping)
+      const heroTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#hero',
+          start: 'top top',
+          end: '+=100%',
+          pin: true,
+          scrub: 1,
+          anticipatePin: 1
+        }
+      });
+
+      heroTl
+        .to('.hero-title', {
+          opacity: 0,
+          y: -50,
+          scale: 0.96,
+          ease: 'power1.inOut'
+        }, 0)
+        .to('.hero-sub, .hero-metrics, #hero-shimmer-btn, .hero-scroll-btn', {
+          opacity: 0,
+          y: -40,
+          ease: 'power1.inOut'
+        }, 0)
+        .to('.hero-grid', {
+          opacity: 0.05,
+          scale: 1.1,
+          ease: 'none'
+        }, 0)
+        .to('.hero-aurora-container', {
+          opacity: 0.1,
+          scale: 1.15,
+          y: -60,
+          ease: 'power1.inOut'
+        }, 0);
+
+      // 4.5 SECTION 2: THE NELC STANDARD PINNED STACK
+      // Left sidebar stays completely fixed/pinned, while Card 2 and Card 3 slide up smoothly over Card 1 in the exact same card area
+      const cards = gsap.utils.toArray('.nelc-card');
+      if (cards.length > 0) {
+        // Initial positioning: Card 1 is visible at yPercent 0, subsequent cards are below viewport of the stage
+        gsap.set(cards[0], { yPercent: 0 });
+        for (let i = 1; i < cards.length; i++) {
+          gsap.set(cards[i], { yPercent: 105 });
+        }
+
+        const nelcTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: '#nelc',
+            start: 'top top',
+            end: '+=2000',
+            pin: true,
+            scrub: 1.2,
+            anticipatePin: 1
+          }
+        });
+
+        // Subtle cinematic focus on the industrial image inside the pinned sidebar
+        nelcTl.from('.reveal-image', {
+          opacity: 0.5,
+          scale: 0.94,
+          duration: 0.6,
+          ease: 'power2.out'
+        }, 0);
+
+        // Card 2 slides up smoothly to cover Card 1
+        if (cards[1]) {
+          nelcTl.to(cards[1], {
+            yPercent: 0,
+            duration: 1.2,
+            ease: 'power2.inOut'
+          }, '+=0.2');
+        }
+
+        // Card 3 slides up smoothly to cover Card 2
+        if (cards[2]) {
+          nelcTl.to(cards[2], {
+            yPercent: 0,
+            duration: 1.2,
+            ease: 'power2.inOut'
+          }, '+=0.2');
+        }
+      }
+
+      // 4.6 SECTION 3: RTL-AWARE HORIZONTAL COURSE SHOWCASE
+      const track = document.querySelector('.courses-track');
+      if (track) {
+        gsap.to(track, {
+          x: () => {
+            const isRtl = document.documentElement.dir === 'rtl';
+            const distance = track.scrollWidth - window.innerWidth + 60;
+            return isRtl ? distance : -distance;
+          },
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '#courses',
+            start: 'top top',
+            end: () => `+=${track.scrollWidth - window.innerWidth + 300}`,
+            pin: true,
+            scrub: 1,
+            invalidateOnRefresh: true
+          }
+        });
+      }
+
+      // 4.7 SECTION 4: 3D QR CERTIFICATE REVEAL
+      gsap.fromTo('.certificate-card',
+        { scale: 0.82, rotateX: 14, y: 70, opacity: 0.3 },
+        {
+          scale: 1,
+          rotateX: 0,
+          y: 0,
+          opacity: 1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '#certificate',
+            start: 'top 75%',
+            end: 'center center',
+            scrub: 1.2
+          }
+        }
+      );
+
+      // 4.8 SPRING-PHYSICS MAGNETIC BUTTONS (Zenox-style magnetic attraction)
+      function initMagneticElement(elementId, intensity = 0.35) {
+        const el = document.getElementById(elementId);
+        if (!el) return;
+
+        let mouseX = 0, mouseY = 0;
+        let currentX = 0, currentY = 0;
+
+        el.addEventListener('mousemove', (e) => {
+          const rect = el.getBoundingClientRect();
+          mouseX = (e.clientX - rect.left - rect.width / 2) * intensity;
+          mouseY = (e.clientY - rect.top - rect.height / 2) * intensity;
+        });
+
+        el.addEventListener('mouseleave', () => {
+          mouseX = 0;
+          mouseY = 0;
+        });
+
+        function animate() {
+          currentX += (mouseX - currentX) * 0.14;
+          currentY += (mouseY - currentY) * 0.14;
+          el.style.transform = `translate3d(${currentX.toFixed(2)}px, ${currentY.toFixed(2)}px, 0)`;
+          requestAnimationFrame(animate);
+        }
+        animate();
+      }
+
+      initMagneticElement('hero-shimmer-btn', 0.28);
+      initMagneticElement('magnetic-btn', 0.35);
+
+      // Refresh ScrollTrigger calculations after image and font loads
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 350);
+    });
+  </script>
+</body>
+
+</html>

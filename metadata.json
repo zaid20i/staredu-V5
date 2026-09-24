@@ -1,0 +1,8 @@
+{
+  "name": "Remix Ver2.2 Star Education | Corporate Training Institute Dammam 1.1",
+  "description": "An award-winning fluid animated landing page for Star Education in Dammam featuring GSAP ScrollTrigger pinning, Lenis smooth scroll, dynamic course showcase, and instant QR verification.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
